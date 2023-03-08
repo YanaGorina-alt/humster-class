@@ -4,10 +4,10 @@ class Hamster{
     // owner - string, initially set as an empty string
     // name - string, set the name from parameter in constructor method
     // price - integer, set as 15
-      constructor(name,owner="",price=15){
-        this.owner = owner;
+      constructor(name){
+        this.owner = "";
         this.name = name;
-        this.price = price;
+        this.price = 15;
       }
     // methods:
     
@@ -16,19 +16,21 @@ class Hamster{
         console.log("squeak squeak");
       }
     // eatFood() - log "nibble nibble"
-      eatFood(){
+      eatFood(num){
+        for(let i = 0; i< num; i++){
         console.log("nibble nibble");
+        }
       }
     // getPrice() - return the price
       getPrice(){
         return this.price;
       }
 }
-    const pik = new Hamster("Pik","Tom",5);
-    console.log(pik);
-    pik.wheelRun();
-    pik.eatFood();
-    console.log(pik.getPrice());
+    // const pik = new Hamster("Pik");
+    // console.log(pik);
+    // pik.wheelRun();
+    // pik.eatFood();
+    // console.log(pik.getPrice());
 
   
 // PERSON
@@ -42,14 +44,14 @@ class Hamster{
 // bankAccount - initially set to 0
 
 class Person{
-  constructor(name,age=0,height=0,weight=0,mood=0,bankAccount=0,hamsters=[]){
+  constructor(name){
     this.name=name;
-    this.age =age;
-    this.height = height;
-    this.weight = weight;
-    this.mood = mood;
-    this.hamsters = hamsters;
-    this.bankAccount = bankAccount;
+    this.age =0;
+    this.height = 0;
+    this.weight = 0;
+    this.mood = 0;
+    this.hamsters = [];
+    this.bankAccount = 0;
   }
 
  
@@ -76,35 +78,41 @@ class Person{
   }
 
   // eat() - increment weight, increment mood
-  eat(){
-    this.weight+=2;
-    this.mood+=4;
+  eat(num){
+    for(let i=0; i<num; i++){
+      this.weight+=2;
+      this.mood+=4;
+    }
   }
 
   // exercise() - decrement weight
-  exercise(){
-    this.weight-=1;
+  exercise(num){
+    for(let i=0; i<num; i++){
+      this.weight-=1;
+    }
   }
 
   // ageUp() - increment age, increment height, increment weight,
   // decrement mood, increment bank account by 10 (birthday money)
-  ageUp(){
-    this.age+=1;
-    if(this.age < 18){
-      this.height+=1;
-      this.weight+=1;
-      this.mood+=5;
-    }else if(this.age < 45){
-      this.mood+=1;
+  ageUp(num){
+    for(let i=0; i<num; i++){
+      this.age+=1;
       this.bankAccount+=10;
-    }else{
-      this.height-=1;
-      this.weight+=4;
-      this.bankAccount+=10;
-      this.mood--;
+      if(this.age < 18){
+        this.height+=0.4;
+        this.weight+=7;
+        this.mood+=1;
+      }else if(this.age < 45){
+        this.mood+=0;
+      }else{
+        this.height-=1;
+        this.weight+=4;
+        this.mood--;
+      }
     }
   }
 
+  
   // buyHamster(hamster) - push the hamster object onto the hamster array,
   // increment mood by 10, decrement bankAccount by the value of the hamster 
   //(hint: use getPrice())
@@ -112,14 +120,60 @@ class Person{
     this.hamsters.push(humster);
     this.mood+=10;
     this.bankAccount-=humster.getPrice();
+    humster.owner = this.name;
   }
 }
 
-const yana = new Person("Yana",45,5,115,9,10000);
-console.log(yana);
-yana.eat();
-yana.buyHamster;
-yana.ageUp();
-yana.exercise();
-yana.buyHamster(pik);
-console.log(yana);
+//const yana = new Person("Yana",45,5,115,9,10000);
+// console.log(yana);
+// yana.eat();
+// yana.buyHamster;
+// yana.ageUp();
+// yana.exercise();
+// yana.buyHamster(pik);
+// console.log(yana);
+
+// Create a Story with your Person class
+
+//1. Instantiate a new Person named Timmy
+const timmy = new Person("Timmy");
+console.log(timmy)
+// 2.Age Timmy five years
+timmy.ageUp(5);
+// 3.At this point Timmy's a little bummed.
+// As a precocious child, he feels he's "seen it all" already.
+// Have him eat five times.
+// for(let i=0; i<5; i++){
+//   timmy.eat();
+// }
+timmy.eat(5);
+//4. Now Timmy's a little heavier than he wants to be. 
+//Kindergarten's coming up and he wants to look good.
+// Have him exercise five times
+// for(let i=0; i<5; i++){
+//   timmy.exercise();
+// }
+timmy.exercise(5);
+// 5.Age Timmy 9 years
+// for(let i=0; i<9; i++){
+//   timmy.ageUp();
+// }
+timmy.ageUp(4);
+console.log(timmy)
+//6. Create a hamster named "Gus"
+const gus = new Hamster("Gus");
+console.log(gus);
+//7. Set Gus's owner to the string "Timmy"
+gus.owner = "Timmy";
+//8. Have Timmy "buy" Gus
+timmy.buyHamster(gus);
+//9. Age Timmy 15 years
+// for(let i=0; i<15; i++){
+//   timmy.ageUp();
+// }
+timmy.ageUp(6);
+// 10.Have Timmy eat twice
+timmy.eat(2);
+//11. Have Timmy exercise twice
+timmy.exercise(2);
+console.log(timmy)
