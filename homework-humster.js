@@ -26,12 +26,7 @@ class Hamster{
         return this.price;
       }
 }
-    // const pik = new Hamster("Pik");
-    // console.log(pik);
-    // pik.wheelRun();
-    // pik.eatFood();
-    // console.log(pik.getPrice());
-
+    
   
 // PERSON
 // attributes:
@@ -124,56 +119,79 @@ class Person{
   }
 }
 
-//const yana = new Person("Yana",45,5,115,9,10000);
-// console.log(yana);
-// yana.eat();
-// yana.buyHamster;
-// yana.ageUp();
-// yana.exercise();
-// yana.buyHamster(pik);
-// console.log(yana);
 
 // Create a Story with your Person class
 
 //1. Instantiate a new Person named Timmy
 const timmy = new Person("Timmy");
 console.log(timmy)
+
 // 2.Age Timmy five years
 timmy.ageUp(5);
+
 // 3.At this point Timmy's a little bummed.
 // As a precocious child, he feels he's "seen it all" already.
 // Have him eat five times.
-// for(let i=0; i<5; i++){
-//   timmy.eat();
-// }
 timmy.eat(5);
+
 //4. Now Timmy's a little heavier than he wants to be. 
 //Kindergarten's coming up and he wants to look good.
 // Have him exercise five times
-// for(let i=0; i<5; i++){
-//   timmy.exercise();
-// }
 timmy.exercise(5);
+
 // 5.Age Timmy 9 years
-// for(let i=0; i<9; i++){
-//   timmy.ageUp();
-// }
 timmy.ageUp(4);
-console.log(timmy)
+
 //6. Create a hamster named "Gus"
 const gus = new Hamster("Gus");
-console.log(gus);
+
 //7. Set Gus's owner to the string "Timmy"
 gus.owner = "Timmy";
+
 //8. Have Timmy "buy" Gus
 timmy.buyHamster(gus);
+
 //9. Age Timmy 15 years
-// for(let i=0; i<15; i++){
-//   timmy.ageUp();
-// }
 timmy.ageUp(6);
+
 // 10.Have Timmy eat twice
 timmy.eat(2);
+
 //11. Have Timmy exercise twice
 timmy.exercise(2);
-console.log(timmy)
+
+
+//Chef Make Dinners
+
+/**
+ * Chef should be a factory of Dinner
+Add a constructor to dinner that sets the string properties: appetizer, entree and dessert.
+Add a method on chef that takes three arguments and returns a new Dinner based on those arguments.
+Have the Chef create 3 dinners, log the dinners
+ */
+class Dinner {
+  constructor(appetizer, entree, dessert){
+    this.appetizer = appetizer;
+    this.entree = entree;
+    this.dessert = dessert;
+  }
+
+}
+
+class Chef {
+  constructor(){
+    this.dinners = [];
+  }
+  generate(appetizer, entree,dessert){
+    const dinner = new Dinner(appetizer,entree,dessert);
+    this.dinners.push(dinner);
+    return dinner;
+  }
+}
+
+const order = new Chef();
+order.generate('Mozzarella Sticks', 'Butter Chicken','Custards');
+order.generate('Cocktail Meatballs', 'Palak Panneer','Cheesecake');
+order.generate('Mac and Chees Bites', 'Spicy Pork Vindaloo', 'Ice Cream');
+console.log(order.dinners);
+ 
